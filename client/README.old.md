@@ -1,2 +1,0 @@
-# video-browser
-Video browser
