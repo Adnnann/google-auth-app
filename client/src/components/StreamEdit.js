@@ -1,7 +1,7 @@
-const streamEdit = () =>{
+const StreamEdit = () =>{
     return(
         <h2>Stream edit</h2>
     )
 }
 
-export default streamEdit;
+export default StreamEdit;

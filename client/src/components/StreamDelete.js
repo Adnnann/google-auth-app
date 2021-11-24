@@ -1,7 +1,7 @@
-const streamDelete = () =>{
+const StreamDelete = () =>{
     return(
         <h2>Stream delete</h2>
     )
 }
 
-export default streamDelete;
+export default StreamDelete;
