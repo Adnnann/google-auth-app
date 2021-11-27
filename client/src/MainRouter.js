@@ -2,17 +2,21 @@ import StreamList from './components/StreamList'
 import StreamShow from './components/StreamShow';
 import StreamEdit from './components/StreamEdit';
 import StreamDelete from './components/StreamDelete';
-import { Routes, Route } from 'react-router-dom';
 import StreamCreate from './components/StreamCreate';
-const MainRouter = () => {
+import { Routes, Route } from 'react-router-dom';
+
+const MainRouter = ({userID}) => {
  
     return(
+
         <Routes>
-            <Route path="/" element={<StreamList/>}>Home</Route>
-            <Route path="/create" element={<StreamCreate />}>Create</Route>
-            <Route path="/edit" element={<StreamEdit />}>Edit</Route>
-            <Route path="/delete" element={<StreamDelete />}>Delete</Route>
+            <Route path="/" element={<StreamList userID={userID}/>}>Home</Route>
+            <Route path="/streams/new" element={<StreamCreate userID={userID}/>}>Create</Route>
+            <Route path="/streams/edit/:id" element={<StreamEdit />}>Edit</Route>
+            <Route path="/streams/delete/:id" element={<StreamDelete />}>Delete</Route>
+            <Route path="/streams/:id" element={<StreamShow />}>Display stream</Route>
         </Routes>
+  
 
     )
    
