@@ -1,5 +1,5 @@
 import { combineReducers } from "redux";
-import { Actions } from "../actions";
+import actions, { Actions } from "../actions";
 import { reducer as FormReducer } from "redux-form";
 const initialState = {
     streams: [
@@ -25,13 +25,21 @@ export const selectedStreamReducer = (state = {}, {type, payload}) => {
 
 export const streamCreateReducer = (state = initialState, {type, payload}) => {
     switch(type){
-        case Actions.SET_STREAMS:
+        case Actions.CREATE_STREAM:
             return {...state, streams: payload};
         default:
             return state;
     }
 }
 
+export const streamEditReducer = (state = initialState, {type, payload}) => {
+    switch(type){
+        case Actions.EDIT_STREAM:
+            return {...state, streams: payload};
+        default:
+            return state;
+    }
+}
 
 export default combineReducers({
     streams: streamReducer,

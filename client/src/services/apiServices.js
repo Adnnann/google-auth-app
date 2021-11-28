@@ -25,7 +25,7 @@ const list = (path, callback) => {
 
 }
 
-const play = (path, id, callback) => {
+const select = (path, id, callback) => {
     axios.get(`${apiUrl}/${path}/${id}`, {headers})
     .then(response => callback(response.data))
     .catch(reason =>{
@@ -36,7 +36,7 @@ const play = (path, id, callback) => {
 const update = (path, id, data, callback) =>{
     axios.put(`${apiUrl}/${path}/${id}`, data, {headers})
     .then(response => callback(response.data))
-    .callback(reason => {
+    .catch(reason => {
         callback(false)
     })
 }
@@ -49,4 +49,4 @@ const remove = (path, id, callback) => {
     })
 }
 
-export { insert, list, play, update, remove};
+export { insert, list, select, update, remove};

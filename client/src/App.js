@@ -10,37 +10,28 @@ function App() {
 const [login, setLogin] = useState(true)
 const [logout, setLogout] = useState(false)
 const [userID, setUserID] = useState("")
-//const userID = props.userID
-// useEffect(() => {
-//  initUserStatus()
-// }, [])
 
-const initUserStatus = () => {
+const logIn = (res) => {
+    if(res){
+      console.log(res.profileObj.googleId)
+      setUserID(res.profileObj.googleId)
+      setLogin(false)
+      setLogout(true)
+    }else{
+        return;
+    }
+  
+}  
+
+const logOut = () => {
+  const auth2 = gapi.auth2.getAuthInstance();
+  auth2.signOut().then(auth2.disconnect())
+  setLogin(true)
+  setLogout(false)
   setUserID("")
 }
 
-
-  const logIn = (res) => {
-      if(res){
-        console.log(res.profileObj.googleId)
-        setUserID(res.profileObj.googleId)
-        setLogin(false)
-        setLogout(true)
-      }else{
-          return;
-      }
-    
-  }  
-
-  const logOut = () => {
-    const auth2 = gapi.auth2.getAuthInstance();
-    auth2.signOut().then(auth2.disconnect())
-    setLogin(true)
-    setLogout(false)
-    setUserID("")
-  }
-
-  return (
+return (
 <Grid verticalAlign="middle" columns={1} centered>
     <Grid.Column width={14}>
 

@@ -17,6 +17,7 @@
     "react-gapi-auth2": "^1.0.4",
     "react-google-login": "^5.2.2",
     "react-localize-redux": "^3.5.3",
+    "react-portal": "^4.2.1",
     "react-redux": "^7.2.6",
     "react-router-dom": "^6.0.2",
     "react-router-redux": "^4.0.8",

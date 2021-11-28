@@ -1,19 +1,34 @@
 {
-    "streams": [
-        {"id":1,
-        "title": "Test title",
-        "description": "Lorem Ipsum",
-        "userID":1
-        },
-        {"id":"111002850547263659758",
-            "title": "Test title",
-            "description": "Lorem Ipsum",
-            "userID":2
-        },
-        {"id":3,
-            "title": "Test title 3",
-            "description": "Lorem Ipsum",
-            "userID":2
-        }
-    ]
+  "streams": [
+    {
+      "title": "This stream is from another user",
+      "description": "I still don't like this form",
+      "userID": "111002850547263659759",
+      "id": 2
+    },
+    {
+      "title": "test",
+      "description": "test",
+      "userID": "111002850547263659758",
+      "id": 3
+    },
+    {
+      "title": "test",
+      "description": "test",
+      "userID": "111002850547263659758",
+      "id": 4
+    },
+    {
+      "title": "test",
+      "description": "test",
+      "userID": "111002850547263659758",
+      "id": 5
+    },
+    {
+      "title": "2e2e2e2",
+      "description": "2e2e",
+      "userID": "111002850547263659758",
+      "id": 6
+    }
+  ]
 }

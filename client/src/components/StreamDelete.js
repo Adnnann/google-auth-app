@@ -1,49 +1,36 @@
-import React from 'react'
-import { Field, formValues, formValueSelector, getFormValues, reduxForm } from 'redux-form'
-import { connect, useDispatch } from 'react-redux'
-import { useSelector } from 'react-redux'
-import { insert } from '../services/apiServices'
-const StreamDelete = props => {
-    const { handleSubmit, pristine, submitting } = props
-    
-    const submit = (e) => {
-        e.preventDefault()
-        console.log(test.title)
-    }
+import { useEffect } from "react"
+import { createPortal } from "react-dom"
+import { Button, Modal } from 'semantic-ui-react'
+import { Link } from "react-router-dom"
+import { remove } from "../services/apiServices"
+import { useParams } from "react-router"
+import { useDispatch } from "react-redux"
 
-    return (
-      <form onSubmit={submit}>
-        <div>
-          <label style={{display:"block"}}>Title</label>
-          <div className="ui error input" style={{width:"70%"}}>
-            <Field
-              name="title"
-              component="input"
-              type="text"
-              placeholder="Enter stream title"
-            />
-          </div>
-        </div>
-        <div>
-          <label style={{display:"block"}}>Description</label>
-          <div className="ui error input" style={{width:"70%"}}>
-            <Field
-              name="description"
-              component="input"
-              type="text"
-              placeholder="Enter stream description"
-            />
-          </div>
-        </div>
-        <div>
-          <button className="ui primary button" type="submit" disabled={pristine || submitting} style={{marginTop:"1%"}}>
-            Submit
-          </button>
-        </div>
-      </form>
-    )
-  }
-  
-  export default reduxForm({
-    form: 'deleteStream' 
-  })(StreamDelete)
+
+
+const StreamDelete = () => {
+
+const params = useParams()  
+const dispatch = useDispatch()
+
+const deleteStream = () => {
+  remove('streams', params.id, data =>{
+    document.getElementById('modal-root').style.visibility = "hidden"
+    window.history.back()
+  })
+}
+
+
+return createPortal(
+
+<div className="modal">
+<div style={{display:"block", position:"fixed", marginTop:"-15%", color:"red"}}><h1>Sure you want to delete?</h1></div>
+<Link to="/"><Button style={{display:"flex"}} onClick={() => {document.getElementById('modal-root').style.visibility = "hidden"}}>Cancel</Button></Link>
+<Button style={{display:"flex"}} onClick={deleteStream}>Proceed</Button>
+  </div>, 
+document.getElementById('modal-root')
+  )
+
+
+}
+export default StreamDelete;
