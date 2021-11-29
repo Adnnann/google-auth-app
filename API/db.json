@@ -1,22 +1,10 @@
 {
   "streams": [
     {
-      "id": 14,
-      "title": "Marina Ovcina",
-      "description": "Mak Ovcina",
-      "userID": "111002850547263659758"
-    },
-    {
-      "title": "Title created by another user",
-      "description": "Description created by another user",
-      "userID": "111002850547263659759",
-      "id": 15
-    },
-    {
-      "title": "Yet Another Stream",
-      "description": "Yet Another Title",
+      "title": "First Stream Title",
+      "description": "First Stream Description",
       "userID": "111002850547263659758",
-      "id": 16
+      "id": 1
     }
   ]
 }

@@ -9,18 +9,24 @@ import '../styles/modal.css'
 
 const StreamList = ({userID})=>{
 const dispatch = useDispatch()
+const [streamsArr, setStreamsArr] = useState([])
 const storedStreams = useSelector((state) => state.streams.streams)
 
 useEffect(()=>{
     list('streams', data => {
+        setStreamsArr(data)
         dispatch(setStreams(data))
     })   
 },[])
 
+console.log(streamsArr.length)
+
     return(
         <>
         <h1>Streams</h1> 
-        {storedStreams.map((stream) => 
+        {streamsArr.length === 0 ?
+        <p>No streams available. Please log in if you wish to create streams</p>
+        : storedStreams.map((stream) => 
         <Message style={{marginBottom:"0%", paddingTop:"0%", paddingBottom:"0%",marginTop:"0"}} key={stream.id}>
     <Grid>
         <Grid.Column width={1}>
