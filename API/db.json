@@ -2,7 +2,7 @@
   "streams": [
     {
       "id": 14,
-      "title": "Adnan Ovcina",
+      "title": "Marina Ovcina",
       "description": "Mak Ovcina",
       "userID": "111002850547263659758"
     },
@@ -13,8 +13,8 @@
       "id": 15
     },
     {
-      "title": "Another title to be deleted",
-      "description": "Same as above",
+      "title": "Yet Another Stream",
+      "description": "Yet Another Title",
       "userID": "111002850547263659758",
       "id": 16
     }
