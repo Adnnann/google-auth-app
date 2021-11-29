@@ -23,6 +23,19 @@ export const selectedStreamReducer = (state = {}, {type, payload}) => {
     }
 }
 
+export const removeStreamReducer = (state = initialState, {type, payload}) => {
+    switch(type){
+        case Actions.DELETE_STREAM:
+            return {
+                ...state,
+                streams: state.streams
+            }
+        default:
+            return state;
+    }
+}
+
+
 export const streamCreateReducer = (state = initialState, {type, payload}) => {
     switch(type){
         case Actions.CREATE_STREAM:
@@ -45,5 +58,6 @@ export default combineReducers({
     streams: streamReducer,
     stream: selectedStreamReducer,
     newStream: streamCreateReducer,
+    removedStreams: removeStreamReducer,
     form:FormReducer
 })

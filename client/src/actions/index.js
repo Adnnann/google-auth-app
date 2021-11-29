@@ -11,7 +11,7 @@ export const Actions = {
 export const setStreams = (streams) => {
     return{
     type:Actions.SET_STREAMS,
-    payload: streams 
+    payload: streams
     };
 };
 

@@ -40,14 +40,14 @@ const StreamShow = () =>{
  
    
     return(
-<>
+    <>
         <video width="80%" height="20%" controls id="stream" style={{margin:"auto"}} onClick={streamDisplay}>
             Your browser does not support the video tag.
         </video>
-        
+
         <h1 style={{marginTop:"0.2%", marginBottom:"0%"}}>{stream.title}</h1>
         <p style={{marginTop:"0.2%"}}>{stream.description}</p>
-</>
+    </>
     )
     
 }

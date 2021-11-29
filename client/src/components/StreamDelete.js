@@ -5,23 +5,24 @@ import { Link } from "react-router-dom"
 import { remove } from "../services/apiServices"
 import { useParams } from "react-router"
 import { useDispatch, useSelector } from "react-redux"
-import { setStreams } from "../actions"
+import { deleteData } from "../actions"
 
 
 
 const StreamDelete = () => {
 
 const params = useParams()  
-const storedStreams = useSelector((state) => state.streams.streams)
 const dispatch = useDispatch()
 
 const deleteStream = () => {
   remove('streams', params.id, data =>{
-    //dispatch(setStreams(data))
-    console.log(data.filter(id => id !== params.id))
-    document.getElementById('modal-root').style.visibility = "hidden"
-    window.history.back()
+    
   })
+
+  dispatch(deleteData(params.id))
+  document.getElementById('modal-root').style.visibility = "hidden"
+  window.history.back()
+  
 }
 
 

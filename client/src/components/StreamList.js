@@ -20,8 +20,6 @@ useEffect(()=>{
     return(
         <>
         <h1>Streams</h1> 
-        
-        
         {storedStreams.map((stream) => 
         <Message style={{marginBottom:"0%", paddingTop:"0%", paddingBottom:"0%",marginTop:"0"}} key={stream.id}>
     <Grid>
