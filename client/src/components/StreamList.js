@@ -27,13 +27,13 @@ useEffect(()=>{
            <Link to={`/streams/${stream.id}`}> <Icon name="photo" size="big" /></Link>
         </Grid.Column>
        <StreamDelete />
-        <Grid.Column width={6}>
+        <Grid.Column width={8}>
             <div style={{display:"block"}} > 
             <Message.Header style={{marginBottom:"0",paddingBottom:"0",marginTop:"0%"}}>{stream.title}</Message.Header>
             <p style={{marginBottom:"0",paddingBottom:"0",marginTop:"0%"}}>{stream.description}</p>
             </div>
         </Grid.Column>
-        <Grid.Column width={8}>
+        <Grid.Column width={6}>
         <Link to={`/streams/delete/${stream.id}`}><Button className="ui right floated button" color="red" style={{visibility: stream.userID === userID  && userID !== "" ? "visible" : "hidden"}} onClick={() => {document.getElementById('modal-root').style.visibility = "visible"}}>Delete</Button></Link>
         <Link to={`/streams/edit/${stream.id}`}> <Button className="ui right floated button" color="blue" style={{visibility: stream.userID === userID && userID !== "" ? "visible" : "hidden"}}>Edit</Button></Link>
         </Grid.Column>

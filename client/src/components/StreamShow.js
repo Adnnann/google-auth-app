@@ -22,7 +22,8 @@ const StreamShow = () =>{
         }   
     },[id])
 
-    const streamDisplay = () => {if(FlvJs.isSupported()){
+    const streamDisplay = () => {
+        if(FlvJs.isSupported()){
         const stream = document.getElementById("stream")
         const flvPlayer = FlvJs.createPlayer({
             type:'flv',
