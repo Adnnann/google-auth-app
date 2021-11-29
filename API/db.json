@@ -1,28 +1,22 @@
 {
   "streams": [
     {
-      "title": "c",
-      "description": "sss",
-      "userID": "",
-      "id": 12
+      "id": 14,
+      "title": "Adnan Ovcina",
+      "description": "Mak Ovcina",
+      "userID": "111002850547263659758"
     },
     {
-      "title": "ydwdwd",
-      "description": "ddwdwd",
-      "userID": "",
-      "id": 13
-    },
-    {
-      "title": "cvddv",
-      "description": "vdvvddv",
-      "userID": "111002850547263659758",
-      "id": 14
-    },
-    {
-      "title": "vdvdvdv",
-      "description": "vdvdvdv",
-      "userID": "111002850547263659758",
+      "title": "Title created by another user",
+      "description": "Description created by another user",
+      "userID": "111002850547263659759",
       "id": 15
+    },
+    {
+      "title": "Another title to be deleted",
+      "description": "Same as above",
+      "userID": "111002850547263659758",
+      "id": 16
     }
   ]
 }
