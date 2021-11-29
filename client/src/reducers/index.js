@@ -1,10 +1,8 @@
 import { combineReducers } from "redux";
-import actions, { Actions } from "../actions";
+import { Actions } from "../actions";
 import { reducer as FormReducer } from "redux-form";
 const initialState = {
-    streams: [
-   
-  ]
+    streams: []
 }
 export const streamReducer = (state = initialState, {type, payload}) => {
     switch(type){
@@ -22,19 +20,6 @@ export const selectedStreamReducer = (state = {}, {type, payload}) => {
             return state;
     }
 }
-
-export const removeStreamReducer = (state = initialState, {type, payload}) => {
-    switch(type){
-        case Actions.DELETE_STREAM:
-            return {
-                ...state,
-                streams: state.streams
-            }
-        default:
-            return state;
-    }
-}
-
 
 export const streamCreateReducer = (state = initialState, {type, payload}) => {
     switch(type){
@@ -58,6 +43,5 @@ export default combineReducers({
     streams: streamReducer,
     stream: selectedStreamReducer,
     newStream: streamCreateReducer,
-    removedStreams: removeStreamReducer,
     form:FormReducer
 })

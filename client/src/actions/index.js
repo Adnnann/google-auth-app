@@ -35,12 +35,4 @@ export const editStream = (streams) => {
     }
 }
 
-export const deleteData = (streams) => {
-    return {
-        type: Actions.DELETE_STREAM,
-        payload: streams
-    }
-}
-
-
-export default {setStreams, selectedStream, createStream};
+export default {setStreams, selectedStream, createStream, editStream};

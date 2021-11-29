@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useEffect } from "react";
 import { select } from '../services/apiServices' 
 import { useParams } from "react-router-dom";
 import { useDispatch } from "react-redux";
@@ -14,8 +14,6 @@ const StreamShow = () =>{
     const streamID = useParams();
     const id = streamID.id
 
-    
-    
     useEffect(()=>{
         if(id && id !==""){
             select('streams',id,data => {
@@ -24,7 +22,6 @@ const StreamShow = () =>{
         }   
     },[id])
 
-    console.log(stream)
     const streamDisplay = () => {if(FlvJs.isSupported()){
         const stream = document.getElementById("stream")
         const flvPlayer = FlvJs.createPlayer({
@@ -39,16 +36,16 @@ const StreamShow = () =>{
 }
  
    
-    return(
+return(
     <>
-        <video width="80%" height="20%" controls id="stream" style={{margin:"auto"}} onClick={streamDisplay}>
-            Your browser does not support the video tag.
-        </video>
+    <video width="80%" height="20%" controls id="stream" style={{margin:"auto"}} onClick={streamDisplay}>
+        Your browser does not support the video tag.
+    </video>
 
-        <h1 style={{marginTop:"0.2%", marginBottom:"0%"}}>{stream.title}</h1>
-        <p style={{marginTop:"0.2%"}}>{stream.description}</p>
+    <h1 style={{marginTop:"0.2%", marginBottom:"0%"}}>{stream.title}</h1>
+    <p style={{marginTop:"0.2%"}}>{stream.description}</p>
     </>
-    )
+)
     
 }
 
