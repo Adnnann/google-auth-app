@@ -4,12 +4,13 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start":"index.js"
+    "start": "index.js"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "node-media-server": "^2.3.8"
+    "node-media-server": "^2.3.8",
+    "node-module": "^2.0.0"
   }
 }
