@@ -1,6 +1,6 @@
 import React, {useState, useEffect} from 'react'
 import { useParams } from 'react-router'
-import { Field, reduxForm } from 'redux-form'
+import { Field, formValues, reduxForm } from 'redux-form'
 import { update } from '../services/apiServices'
 import { connect, useDispatch, useSelector } from 'react-redux'
 import { editStream, selectedStream } from '../actions'
@@ -42,51 +42,85 @@ const val2 = (event, newValue, previousValue, name) => {
 } 
 
 
-const submit = values => {
+
+
+
+
+const renderError = ({error, touched}) => {
+
+    return(
+      
+      <div className="ui error input" style={{width:"70%",color:"red"}}>{error}</div>
+      
+    )
+  
+  
+}
+
+const renderField = ({ input, label, type, meta}) => (
+  <>
+  <div>
+    <label style={{display:"block"}}>{label}</label>
+    <div className="ui error input" style={{width:"70%"}}>
+      <input {...input} type={type}/>
+    </div>
+    {renderError(meta)}
+  </div>
+  
+  </>
+)
+
+const { handleSubmit} = props
+
+const onSubmit = values => {
+  editedStream.title = values.title;
+  editedStream.description = values.description
+
   update('streams',id, editedStream, data=>{
     dispatch(editStream(data))
   })
-  values.title = "";
-  values.description = ""
+  //values.title = "";
+  //values.description = ""
   window.history.back()
-}
 
-const { handleSubmit, pristine, submitting } = props
+}
 
    
 return (
-  <form onSubmit={handleSubmit(submit)}>
-    <div>
-      <label style={{display:"block"}}>Title</label>
-      <div className="ui error input" style={{width:"70%"}}>
-        <Field
-          name="title"
-          component="input"
-          type="text"
-          placeholder="Enter stream title"
-          onChange={val1}
-        />
-      </div>
-    </div>
-    <div>
-      <label style={{display:"block"}}>Description</label>
-      <div className="ui error input" style={{width:"70%"}}>
-        <Field
-          name="description"
-          component="input"
-          type="text"
-          placeholder="Enter stream description"
-          onChange={val2}
-        />
-      </div>
-    </div>
-    <div>
-      <button className="ui primary button" type="submit" disabled={pristine || submitting} style={{marginTop:"1%"}}>
+  <form onSubmit={handleSubmit(onSubmit)}>
+   
+   <Field name="title"
+    type="text"
+    component={renderField}
+    label="Enter title"
+    onChange={val1}
+  />
+
+  <Field name="description"
+  type="text"
+  component={renderField}
+  label="Enter description"
+  onChange={val2}
+  />
+
+      <button className="ui primary button" type="submit" style={{marginTop:"1%"}}>
         Submit
       </button>
-    </div>
+    
   </form>
 )
+
+}
+
+const validate = formValues => {
+  const errors = {}
+  if(!formValues.title){
+    errors.title = "You must enter a title"
+  }
+  if(!formValues.description){
+    errors.description = "You must enter a description"
+  }
+  return errors;
 }
 
 const mapStateToProps = (state) => {
@@ -100,7 +134,8 @@ const mapStateToProps = (state) => {
 
 export default connect(mapStateToProps)(reduxForm({
   form: 'editStream',
-  enableReinitialize: true
+  enableReinitialize: true,
+  validate,
 })(StreamEdit))
 
 

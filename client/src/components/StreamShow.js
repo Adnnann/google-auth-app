@@ -22,7 +22,6 @@ const StreamShow = () =>{
                 if(data) dispatch(selectedStream(data))
             })
         }   
-streamDisplay()
     },[id])
 
     console.log(stream)
@@ -30,7 +29,7 @@ streamDisplay()
         const stream = document.getElementById("stream")
         const flvPlayer = FlvJs.createPlayer({
             type:'flv',
-            url:'rtmp://localhost/live'
+            url:'http://localhost/live/1'
         });
         flvPlayer.attachMediaElement(stream);
         flvPlayer.load();
@@ -42,7 +41,7 @@ streamDisplay()
    
     return(
 <>
-        <video width="80%" height="20%" controls id="stream" style={{margin:"auto"}}>
+        <video width="80%" height="20%" controls id="stream" style={{margin:"auto"}} onClick={streamDisplay}>
             Your browser does not support the video tag.
         </video>
         

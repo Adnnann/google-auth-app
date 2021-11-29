@@ -19,64 +19,92 @@ const StreamCreate = (props) => {
 
   newStream.userID = props.userID;
   newStream.id = storedStreams.lenght
-  const test = (event, newValue, previousValue, name) => {
+  const val1 = (event, newValue, previousValue, name) => {
     newStream.title = newValue
   } 
 
-  const test2 = (event, newValue, previousValue, name) => {
+  const val2 = (event, newValue, previousValue, name) => {
     newStream.description = newValue
   } 
 
+  const renderError = ({error, touched}) => {
+  if(error && touched){
+    return(
+      <div className="ui error input" style={{width:"70%",color:"red"}}>{error}</div>   
+    ) 
 
-    const submit = values => {
-      insert('streams', newStream, data => {
-        dispatcher(createStream(data))
-      })
-      values.title = "";
-      values.description = ""
-      window.history.back()
   }
  
-  const { handleSubmit, pristine, submitting } = props
-  return (
-    <>
-    <h1>Create a Stream</h1>
-    <form onSubmit={handleSubmit(submit)}>
-      <div>
-        <label style={{display:"block"}}>Enter title</label>
-        <div className="ui error input" style={{width:"70%"}}>
-          <Field
-            name="title"
-            component="input"
-            type="text"
-            placeholder="Enter stream title"
-            onChange={test}
-          />
-        </div>
-      </div>
-      <div>
-        <label style={{display:"block"}}>Enter description</label>
-        <div className="ui error input" style={{width:"70%"}}>
-          <Field
-            name="description"
-            component="input"
-            type="text"
-            placeholder="Enter stream description"
-            onChange={test2}
-          />
-        </div>
-      </div>
-      <div>
-        <button className="ui primary button" type="submit" disabled={pristine || submitting} style={{marginTop:"1%"}}>
-          Submit
-        </button>
-      </div>
-    </form>
-    </>
-  )
 }
+
+const renderField = ({ input, label, type, meta}) => (
+  <>
+  <div>
+    <label style={{display:"block"}}>{label}</label>
+    <div className="ui error input" style={{width:"70%"}}>
+      <input {...input} type={type} placeholder={label}/>
+    </div>
+    {renderError(meta)}
+  </div>
+  
+  </>
+)
+    
+ 
+  const { handleSubmit, pristine, submitting } = props
+
+  const onSubmit = values => {
+    insert('streams', newStream, data => {
+      dispatcher(createStream(data))
+    })
+    values.title = "";
+    values.description = ""
+    window.history.back()
+}
+  return (
+<>
+    <h1>Create a Stream</h1>
+    <form onSubmit={handleSubmit(onSubmit)}>
+   
+        <Field name="title"
+          type="text"
+          component={renderField}
+          label="Enter title"
+          onChange={val1}
+          onFocus={(e)=>e.target.placeholder = ""}
+        />
+
+        <Field name="description"
+        type="text"
+        component={renderField}
+        label="Enter description"
+        onChange={val2}
+        onFocus={(e)=>e.target.placeholder = ""}
+        />
+
+      <button className="ui primary button" type="submit" style={{marginTop:"1%"}} disabled={pristine || submitting}>
+        Submit
+      </button>
+    
+  </form>
+  </>
+)
+  
+}
+const validate = formValues => {
+  const errors = {}
+  if(!formValues.title){
+    errors.title = "You must enter a title"
+  }
+  if(!formValues.description){
+    errors.description = "You must enter a description"
+  }
+  return errors;
+}
+
   export default reduxForm({
-    form: 'createStream' 
+    form: 'createStream',
+    validate 
   })(StreamCreate)
   
 
