@@ -19,8 +19,6 @@ useEffect(()=>{
     })   
 },[])
 
-console.log(streamsArr.length)
-
     return(
         <>
 

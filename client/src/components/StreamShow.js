@@ -22,7 +22,6 @@ const StreamShow = () =>{
         streamDisplay()
     },[id])
 
-    console.log("stream id", stream.id)
     const streamDisplay = () => {
         if(FlvJs.isSupported()){
         const stream = document.getElementById("stream")
@@ -30,20 +29,17 @@ const StreamShow = () =>{
             type:'flv',
             url:`http://localhost:8000/live/${stream.id}.flv`
         });
-        if(!flvPlayer){
-            return
-        }else{
-            flvPlayer.attachMediaElement(stream);
-        flvPlayer.load();
-        flvPlayer.play()
-        }
         
-    }
+        flvPlayer.attachMediaElement(stream);
+        flvPlayer.load();
+
+        }
 }
  
    
 return(
     <>
+    <h1 style={{visibility:"hidden"}}>Video cannot be displayed</h1>
     <video width="80%" height="20%" controls id="stream" style={{margin:"auto"}}>
         Your browser does not support the video tag.
     </video>
