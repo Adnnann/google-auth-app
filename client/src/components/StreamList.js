@@ -23,10 +23,12 @@ console.log(streamsArr.length)
 
     return(
         <>
+
         <h1>Streams</h1> 
-        {streamsArr.length === 0 ?
-        <p>No streams available. Please log in if you wish to create streams</p>
-        : storedStreams.map((stream) => 
+
+        {streamsArr.length === 0 ? <p>No streams available. Please log in if you wish to create streams</p> 
+        :!streamsArr || !storedStreams ? <p>There is an issue with server. Please try later!</p> 
+        :storedStreams.map((stream) => 
         <Message style={{marginBottom:"0%", paddingTop:"0%", paddingBottom:"0%",marginTop:"0"}} key={stream.id}>
     <Grid>
         <Grid.Column width={1}>

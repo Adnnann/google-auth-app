@@ -13,7 +13,6 @@ const StreamShow = () =>{
     const dispatch = useDispatch();
     const streamID = useParams();
     const id = streamID.id
-
     useEffect(()=>{
         if(id && id !==""){
             select('streams',id,data => {
@@ -23,17 +22,22 @@ const StreamShow = () =>{
         streamDisplay()
     },[id])
 
+    console.log("stream id", stream.id)
     const streamDisplay = () => {
         if(FlvJs.isSupported()){
         const stream = document.getElementById("stream")
         const flvPlayer = FlvJs.createPlayer({
             type:'flv',
-            url:'rtmp://localhost/live/1'
+            url:`http://localhost:8000/live/${stream.id}.flv`
         });
-        flvPlayer.attachMediaElement(stream);
+        if(!flvPlayer){
+            return
+        }else{
+            flvPlayer.attachMediaElement(stream);
         flvPlayer.load();
         flvPlayer.play()
-
+        }
+        
     }
 }
  
