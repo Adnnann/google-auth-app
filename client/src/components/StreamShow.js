@@ -32,7 +32,7 @@ const StreamShow = () =>{
         
         flvPlayer.attachMediaElement(stream);
         flvPlayer.load();
-
+        flvPlayer.play()
         }
 }
  
