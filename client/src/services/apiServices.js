@@ -7,7 +7,6 @@ const headers = {
     'Content-Type':'application/json',
     'Accept':'application/json'
 }
-
 const insert = (path, data, callback) => {
     axios.post(`${apiUrl}/${path}`, data, {headers})
     .then(response => callback(response.data))
