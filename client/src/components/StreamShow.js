@@ -39,7 +39,6 @@ const StreamShow = () =>{
    
 return(
     <>
-    <h1 style={{visibility:"hidden"}}>Video cannot be displayed</h1>
     <video width="80%" height="20%" controls id="stream" style={{margin:"auto"}}>
         Your browser does not support the video tag.
     </video>
