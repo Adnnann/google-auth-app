@@ -25,7 +25,7 @@ useEffect(()=>{
         <h1>Streams</h1> 
 
         {streamsArr.length === 0 ? <p>No streams available. Please log in if you wish to create streams</p> 
-        :!streamsArr || !storedStreams ? <p>There is an issue with server. Please try later!</p> 
+        :!streamsArr || !storedStreams ? <p>We have some technical issues. Please try again later!</p> 
         :storedStreams.map((stream) => 
         <Message style={{marginBottom:"0%", paddingTop:"0%", paddingBottom:"0%",marginTop:"0"}} key={stream.id}>
     <Grid>
@@ -47,7 +47,7 @@ useEffect(()=>{
     </Message> 
     )  
  }
- <Button primary className="ui right floated button" style={{visibility: userID !== "" ? "visible" : "hidden"}}><Link to="/streams/new" style={{color:"white", textDecoration:"none"}}>Create stream</Link></Button>
+ <Button primary className="ui right floated button" style={{visibility: userID !== "" ? "visible" : "hidden"}} disabled={!streamsArr || !storedStreams ? true : false}><Link to="/streams/new" style={{color:"white", textDecoration:"none"}}>Create stream</Link></Button>
 
        
      </>

@@ -3,7 +3,7 @@ import Header from './components/Header'
 import {BrowserRouter as Router} from 'react-router-dom'
 import MainRouter from './MainRouter';
 import 'semantic-ui-css/semantic.min.css'
-import {useState, useEffect } from 'react'
+import { useState } from 'react'
 import { gapi } from 'gapi-script';
 function App() {
 
@@ -13,7 +13,6 @@ const [userID, setUserID] = useState("")
 
 const logIn = (res) => {
     if(res){
-      console.log(res.profileObj.googleId)
       setUserID(res.profileObj.googleId)
       setLogin(false)
       setLogout(true)
