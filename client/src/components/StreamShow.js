@@ -27,7 +27,7 @@ const StreamShow = () =>{
         const stream = document.getElementById("stream")
         const flvPlayer = FlvJs.createPlayer({
             type:'flv',
-            url:`http://localhost:8000/live/${stream.id}.flv`
+            url:`http://localhost:8000/live/${streamID.id}.flv`
         });
         
         flvPlayer.attachMediaElement(stream);
@@ -35,7 +35,7 @@ const StreamShow = () =>{
         flvPlayer.play()
         }
 }
- 
+
    
 return(
     <>
