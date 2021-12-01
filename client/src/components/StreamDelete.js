@@ -22,10 +22,7 @@ const deleteStream = () => {
   navigate('/')
 }
 
-
-
 return createPortal(
-  
   <div className="modal">
   <div style={{display:"block", position:"fixed", marginTop:"-15%", color:"red"}}><h1>Sure you want to delete?</h1></div>
   <Link to="/"><Button style={{display:"flex"}} onClick={() => {document.getElementById('modal-root').style.visibility = "hidden"}}>Cancel</Button></Link>
