@@ -6,7 +6,29 @@ import { connect, useDispatch, useSelector } from 'react-redux'
 import { editStream, selectedStream } from '../actions'
 import { select } from '../services/apiServices'
 
+const renderError = ({error, touched}) => {
 
+  return(
+    
+    <div className="ui error input" style={{width:"70%",color:"red"}}>{error}</div>
+    
+  )
+
+
+}
+
+const renderField = ({ input, label, type, meta}) => (
+<>
+<div>
+  <label style={{display:"block"}}>{label}</label>
+  <div className="ui error input" style={{width:"70%"}}>
+    <input {...input} type={type}/>
+  </div>
+  {renderError(meta)}
+</div>
+
+</>
+)
 const StreamEdit = props => {
 const dispatch = useDispatch()
 
@@ -17,8 +39,6 @@ const dispatch = useDispatch()
 },[])
 
 const stream = useSelector((state) => state.stream)
-
-
 
 const paramID = useParams()
 const id = paramID.id
@@ -42,34 +62,6 @@ const val2 = (event, newValue, previousValue, name) => {
 } 
 
 
-
-
-
-
-const renderError = ({error, touched}) => {
-
-    return(
-      
-      <div className="ui error input" style={{width:"70%",color:"red"}}>{error}</div>
-      
-    )
-  
-  
-}
-
-const renderField = ({ input, label, type, meta}) => (
-  <>
-  <div>
-    <label style={{display:"block"}}>{label}</label>
-    <div className="ui error input" style={{width:"70%"}}>
-      <input {...input} type={type}/>
-    </div>
-    {renderError(meta)}
-  </div>
-  
-  </>
-)
-
 const { handleSubmit} = props
 
 const onSubmit = values => {
@@ -79,8 +71,6 @@ const onSubmit = values => {
   update('streams',id, editedStream, data=>{
     dispatch(editStream(data))
   })
-  //values.title = "";
-  //values.description = ""
   window.history.back()
 
 }

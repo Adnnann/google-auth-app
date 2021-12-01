@@ -5,6 +5,27 @@ import { useDispatch, useSelector } from 'react-redux'
 import { insert } from '../services/apiServices'
 import { createStream } from '../actions'
 
+const renderError = ({error, touched}) => {
+  if(error && touched){
+    return(
+      <div className="ui error input" style={{width:"70%",color:"red"}}>{error}</div>   
+    ) 
+
+  }
+ 
+}
+const renderField = ({ input, label, type, meta}) => (
+  <>
+  <div>
+    <label style={{display:"block"}}>{label}</label>
+    <div className="ui error input" style={{width:"70%"}}>
+      <input {...input} type={type} placeholder={label}/>
+    </div>
+  {renderError(meta)}
+  </div>
+  
+  </>
+)
 const StreamCreate = (props) => {
    
  const [newStream, setNewStream] = useState({
@@ -27,28 +48,9 @@ const StreamCreate = (props) => {
     newStream.description = newValue
   } 
 
-  const renderError = ({error, touched}) => {
-  if(error && touched){
-    return(
-      <div className="ui error input" style={{width:"70%",color:"red"}}>{error}</div>   
-    ) 
-
-  }
- 
-}
-
-const renderField = ({ input, label, type, meta}) => (
-  <>
-  <div>
-    <label style={{display:"block"}}>{label}</label>
-    <div className="ui error input" style={{width:"70%"}}>
-      <input {...input} type={type} placeholder={label}/>
-    </div>
-    {renderError(meta)}
-  </div>
   
-  </>
-)
+
+
     
  
   const { handleSubmit, pristine, submitting } = props
