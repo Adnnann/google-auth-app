@@ -7,11 +7,17 @@ import { useDispatch } from "react-redux"
 import { setStreams } from "../actions"
 
 
-const StreamDelete = () => {
+const StreamDelete = props => {
 
 const params = useParams()  
 const dispatch = useDispatch()
 const navigate = useNavigate()
+
+if(props.userID === ""){
+  document.getElementById('modal-root').style.visibility = "hidden"
+  navigate('/')
+}
+
 const deleteStream = () => {
   remove('streams', params.id, data =>{ 
   })
@@ -23,7 +29,7 @@ const deleteStream = () => {
 }
 
 return createPortal(
-  <div className="modal">
+  <div className="modal" id="test">
   <div style={{display:"block", position:"fixed", marginTop:"-15%", color:"red"}}><h1>Sure you want to delete?</h1></div>
   <Link to="/"><Button style={{display:"flex"}} onClick={() => {document.getElementById('modal-root').style.visibility = "hidden"}}>Cancel</Button></Link>
   <Button style={{display:"flex"}} onClick={deleteStream}>Proceed</Button>

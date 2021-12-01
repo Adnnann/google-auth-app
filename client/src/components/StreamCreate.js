@@ -2,9 +2,10 @@
 import React, {useRef, useState} from 'react'
 import { Field, reduxForm } from 'redux-form'
 import { useDispatch, useSelector } from 'react-redux'
-import { insert } from '../services/apiServices'
-import { createStream } from '../actions'
+import { insert, list } from '../services/apiServices'
+import { selectedStream, setStreams } from '../actions'
 import {useNavigate} from 'react-router-dom'
+import { useEffect } from 'react'
 
 const renderError = ({error, touched}) => {
   if(error && touched){
@@ -35,7 +36,7 @@ const StreamCreate = (props) => {
     description:"",
     userID:""
   })
-  const dispatcher = useDispatch()  
+  const dispatch = useDispatch()  
   const storedStreams = useSelector((state) => state.streams.streams)
   const navigate = useNavigate()
 
@@ -58,7 +59,9 @@ const StreamCreate = (props) => {
 
   const onSubmit = values => {
     insert('streams', newStream, data => {
-      dispatcher(createStream(data))
+    })
+    list('streams',data=>{
+      dispatch(setStreams(data))
     })
     values.title = "";
     values.description = ""

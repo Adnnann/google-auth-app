@@ -3,7 +3,7 @@ import { React, useEffect, useState } from 'react';
 import { list } from '../services/apiServices'
 import { Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux'
-import { setStreams } from '../actions';
+import { setStreams, selectedStream } from '../actions';
 import StreamDelete from './StreamDelete';
 import '../styles/modal.css'
 import { useNavigate } from 'react-router';
@@ -17,7 +17,9 @@ useEffect(()=>{
     list('streams', data => {
         setStreamsArr(data)
         dispatch(setStreams(data))
-    })   
+        
+    })  
+    dispatch(selectedStream(null)) 
 },[])
 
     return(
