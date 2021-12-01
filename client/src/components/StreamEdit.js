@@ -1,10 +1,11 @@
 import React, {useState, useEffect} from 'react'
-import { useParams } from 'react-router'
+import { useNavigate, useParams } from 'react-router'
 import { Field, formValues, reduxForm } from 'redux-form'
 import { update } from '../services/apiServices'
 import { connect, useDispatch, useSelector } from 'react-redux'
 import { editStream, selectedStream } from '../actions'
 import { select } from '../services/apiServices'
+import { Navigate } from 'react-router'
 
 const renderError = ({error, touched}) => {
 
@@ -13,7 +14,6 @@ const renderError = ({error, touched}) => {
     <div className="ui error input" style={{width:"70%",color:"red"}}>{error}</div>
     
   )
-
 
 }
 
@@ -31,7 +31,7 @@ const renderField = ({ input, label, type, meta}) => (
 )
 const StreamEdit = props => {
 const dispatch = useDispatch()
-
+const navigate = useNavigate()
   useEffect(()=>{
     select('streams',id,data => {
         if(data) dispatch(selectedStream(data))
@@ -71,7 +71,7 @@ const onSubmit = values => {
   update('streams',id, editedStream, data=>{
     dispatch(editStream(data))
   })
-  window.history.back()
+  navigate('/')
 
 }
 

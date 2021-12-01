@@ -1,9 +1,10 @@
 
-import React, {useState} from 'react'
+import React, {useRef, useState} from 'react'
 import { Field, reduxForm } from 'redux-form'
 import { useDispatch, useSelector } from 'react-redux'
 import { insert } from '../services/apiServices'
 import { createStream } from '../actions'
+import {useNavigate} from 'react-router-dom'
 
 const renderError = ({error, touched}) => {
   if(error && touched){
@@ -34,9 +35,9 @@ const StreamCreate = (props) => {
     description:"",
     userID:""
   })
-
   const dispatcher = useDispatch()  
   const storedStreams = useSelector((state) => state.streams.streams)
+  const navigate = useNavigate()
 
   newStream.userID = props.userID;
   newStream.id = storedStreams.lenght
@@ -48,11 +49,6 @@ const StreamCreate = (props) => {
     newStream.description = newValue
   } 
 
-  
-
-
-    
- 
   const { handleSubmit, pristine, submitting } = props
 
   const onSubmit = values => {
@@ -61,7 +57,7 @@ const StreamCreate = (props) => {
     })
     values.title = "";
     values.description = ""
-    window.history.back()
+    navigate("/")
 }
   return (
 <>

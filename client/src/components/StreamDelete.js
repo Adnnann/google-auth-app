@@ -1,18 +1,17 @@
 import { createPortal } from "react-dom"
 import { Button } from 'semantic-ui-react'
-import { Link } from "react-router-dom"
+import { Link, Navigate } from "react-router-dom"
 import { list, remove } from "../services/apiServices"
-import { useParams } from "react-router"
+import { useNavigate, useParams } from "react-router"
 import { useDispatch } from "react-redux"
 import { setStreams } from "../actions"
-import StreamList from "./StreamList"
 
 
 const StreamDelete = () => {
 
 const params = useParams()  
 const dispatch = useDispatch()
-
+const navigate = useNavigate()
 const deleteStream = () => {
   remove('streams', params.id, data =>{ 
   })
@@ -20,7 +19,7 @@ const deleteStream = () => {
     dispatch(setStreams(data))
   })
   document.getElementById('modal-root').style.visibility = "hidden"
-  window.history.back() 
+  navigate('/')
 }
 
 
