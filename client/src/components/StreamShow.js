@@ -19,8 +19,16 @@ const StreamShow = () =>{
                 if(data) dispatch(selectedStream(data))
             })
         }   
-        streamDisplay()
+        window.addEventListener("unhandledrejection", () => {
+            document.getElementById("stream").remove()
+    })
+    streamDisplay()
+       
     },[id])
+
+    window.addEventListener("unhandledrejection", event => {
+        return
+})
 
     const streamDisplay = () => {
         if(FlvJs.isSupported()){
@@ -30,12 +38,12 @@ const StreamShow = () =>{
             url:`http://localhost:8000/live/${streamID.id}.flv`
         });
         
-        flvPlayer.attachMediaElement(stream);
-        flvPlayer.load();
-        flvPlayer.play()
-        }
-}
-
+        flvPlayer.attachMediaElement(stream)
+        
+          flvPlayer.load();
+     
+    }  
+    }
    
 return(
     <>

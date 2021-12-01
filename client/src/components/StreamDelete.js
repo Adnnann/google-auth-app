@@ -5,6 +5,7 @@ import { list, remove } from "../services/apiServices"
 import { useParams } from "react-router"
 import { useDispatch } from "react-redux"
 import { setStreams } from "../actions"
+import StreamList from "./StreamList"
 
 
 const StreamDelete = () => {
@@ -24,6 +25,7 @@ const deleteStream = () => {
 
 
 return createPortal(
+  
   <div className="modal">
   <div style={{display:"block", position:"fixed", marginTop:"-15%", color:"red"}}><h1>Sure you want to delete?</h1></div>
   <Link to="/"><Button style={{display:"flex"}} onClick={() => {document.getElementById('modal-root').style.visibility = "hidden"}}>Cancel</Button></Link>
