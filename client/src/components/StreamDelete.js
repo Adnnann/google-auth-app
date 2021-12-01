@@ -24,6 +24,7 @@ const deleteStream = () => {
 }
 
 
+
 return createPortal(
   
   <div className="modal">

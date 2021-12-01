@@ -5,6 +5,7 @@ import { useDispatch } from "react-redux";
 import { selectedStream } from "../actions";
 import { useSelector } from "react-redux";
 import FlvJs from "flv.js";
+import {ReactFlvPlayer} from 'react-flv-player'
 
 
 const StreamShow = () =>{
@@ -19,38 +20,31 @@ const StreamShow = () =>{
                 if(data) dispatch(selectedStream(data))
             })
         }   
-        window.addEventListener("unhandledrejection", () => {
-            document.getElementById("stream").remove()
-    })
-    streamDisplay()
-       
     },[id])
 
-    window.addEventListener("unhandledrejection", event => {
-        return
-})
-
-    const streamDisplay = () => {
-        if(FlvJs.isSupported()){
-        const stream = document.getElementById("stream")
-        const flvPlayer = FlvJs.createPlayer({
-            type:'flv',
-            url:`http://localhost:8000/live/${streamID.id}.flv`
-        });
-        
-        flvPlayer.attachMediaElement(stream)
-        
-          flvPlayer.load();
-     
-    }  
-    }
-   
 return(
     <>
-    <video width="80%" height="20%" controls id="stream" style={{margin:"auto"}}>
-        Your browser does not support the video tag.
-    </video>
-
+    <p style={{visibility:"hidden", height:"0", color:"red",paddingBottom:"0"}} id="error">There is an error with a server. Try again later</p>
+    <div style={{width:"80%", height:"20%"}}>
+    <ReactFlvPlayer
+          url = {`http://localhost:8000/live/${streamID.id}.flv`}
+          isMuted={true}
+            handleError={(err) => {
+        switch (err) {
+            case 'NetworkError':
+            document.getElementById("error").style.visibility ="visible"
+            document.getElementById("error").style.height ="2%"
+            console.log('network error');
+            break;
+            case 'MediaError':
+            console.log('network error');
+            break;
+            default:
+            document.getElementById("error").remove()
+        }
+        }}
+        />
+    </div>
     <h1 style={{marginTop:"0.2%", marginBottom:"0%"}}>{stream.title}</h1>
     <p style={{marginTop:"0.2%"}}>{stream.description}</p>
     </>
