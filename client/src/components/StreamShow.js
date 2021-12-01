@@ -32,9 +32,10 @@ return(
             handleError={(err) => {
         switch (err) {
             case 'NetworkError':
-            document.getElementById("error").style.visibility ="visible"
-            document.getElementById("error").style.height ="2%"
-            console.log('network error');
+            if(document.body.contains(document.getElementById("error"))){
+            document.getElementById("error").style.visibility = "visible"
+            document.getElementById("error").style.height = "2%"
+            }
             break;
             case 'MediaError':
             console.log('network error');
