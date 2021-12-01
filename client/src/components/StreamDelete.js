@@ -1,6 +1,6 @@
 import { createPortal } from "react-dom"
 import { Button } from 'semantic-ui-react'
-import { Link, Navigate } from "react-router-dom"
+import { Link } from "react-router-dom"
 import { list, remove } from "../services/apiServices"
 import { useNavigate, useParams } from "react-router"
 import { useDispatch } from "react-redux"

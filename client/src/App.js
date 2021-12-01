@@ -1,12 +1,15 @@
 import { Grid } from 'semantic-ui-react';
 import Header from './components/Header'
-import {BrowserRouter as Router} from 'react-router-dom'
+import {BrowserRouter as Router } from 'react-router-dom'
 import MainRouter from './MainRouter';
 import 'semantic-ui-css/semantic.min.css'
 import { useState } from 'react'
 import { gapi } from 'gapi-script';
-function App() {
+import { useNavigate} from "react-router"
 
+
+function App() {
+  //const navigate = useNavigate()
 const [login, setLogin] = useState(true)
 const [logout, setLogout] = useState(false)
 const [userID, setUserID] = useState("")
@@ -23,6 +26,7 @@ const logIn = (res) => {
 }  
 
 const logOut = () => {
+
   const auth2 = gapi.auth2.getAuthInstance();
   auth2.signOut().then(auth2.disconnect())
   setLogin(true)

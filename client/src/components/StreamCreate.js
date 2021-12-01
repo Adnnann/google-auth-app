@@ -41,6 +41,11 @@ const StreamCreate = (props) => {
 
   newStream.userID = props.userID;
   newStream.id = storedStreams.lenght
+
+  if(props.userID === ""){
+    navigate('/')
+  }
+
   const val1 = (event, newValue, previousValue, name) => {
     newStream.title = newValue
   } 

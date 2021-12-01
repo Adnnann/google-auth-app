@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react'
+import React, {useState, useEffect, useRef} from 'react'
 import { useNavigate, useParams } from 'react-router'
 import { Field, formValues, reduxForm } from 'redux-form'
 import { update } from '../services/apiServices'
@@ -32,11 +32,15 @@ const renderField = ({ input, label, type, meta}) => (
 const StreamEdit = props => {
 const dispatch = useDispatch()
 const navigate = useNavigate()
-  useEffect(()=>{
-    select('streams',id,data => {
-        if(data) dispatch(selectedStream(data))
-    })
+useEffect(()=>{
+  select('streams',id,data => {
+      if(data) dispatch(selectedStream(data))
+  })
 },[])
+
+if(props.userID === ""){
+  navigate('/')
+}
 
 const stream = useSelector((state) => state.stream)
 
@@ -49,9 +53,11 @@ const [editedStream, setNewStream] = useState({
   userID:""
 })
 
+const currentVal = useRef(editedStream)
+const currentEditedStream = currentVal.current
+
 editedStream.userID = props.userID;
 editedStream.id = paramID.id
-
 
 const val1 = (event, newValue, previousValue, name) => {
   editedStream.title = newValue
@@ -61,14 +67,13 @@ const val2 = (event, newValue, previousValue, name) => {
   editedStream.description = newValue
 } 
 
-
 const { handleSubmit} = props
 
 const onSubmit = values => {
-  editedStream.title = values.title;
-  editedStream.description = values.description
+  currentEditedStream.title = values.title;
+  currentEditedStream.description = values.description
 
-  update('streams',id, editedStream, data=>{
+  update('streams',id, currentEditedStream, data=>{
     dispatch(editStream(data))
   })
   navigate('/')

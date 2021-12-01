@@ -5,14 +5,14 @@ import { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { setStreams } from '../actions';
 import { list } from '../services/apiServices';
-
+import { Navigate, useNavigate } from 'react-router';
 
 
 const Header = ({logIn, logOut, login, logout}) =>{
     const [streamsArr, setStreamsArr] = useState([])
     const storedStreams = useSelector((state) => state.streams.streams)
     const dispatch = useDispatch()
-
+    const navigate = useNavigate()
     useEffect(()=>{
         list('streams', data => {
             setStreamsArr(data)
@@ -35,11 +35,11 @@ const Header = ({logIn, logOut, login, logout}) =>{
         /> : null
         }
         { logout ?
-            <Link to="/">  <button className="ui google plus right floated button" onClick={logOut}>
-            <i aria-hidden="true" className="google plus icon"></i> Logout</button></Link>
+            <button className="ui google plus right floated button" onClick={logOut}>
+            <i aria-hidden="true" className="google plus icon"></i> Logout</button>
         : null}
            <button className="ui left floated button" style={{backgroundColor:"white"}}>Streamer</button>
-            <button className="ui right floated button" style={{backgroundColor:"white"}}><Link  to='/' style={{color:"grey", textDecoration:"none"}}>All streams</Link></button>
+            <button className="ui right floated button" style={{backgroundColor:"white"}} onClick={()=>navigate('/')}>All streams</button>
             
         </div>  
     )
