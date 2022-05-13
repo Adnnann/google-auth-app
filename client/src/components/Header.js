@@ -23,7 +23,7 @@ const Header = ({logIn, logOut, login, logout}) =>{
         <div>
         { login ?
        <GoogleLogin
-        clientId={"477654461385-5hndheblo0s294djmmhf3kgqa8m9asls.apps.googleusercontent.com"}
+        clientId={`${KEY}.apps.googleusercontent.com`}
         buttonText="Log In"
         onSuccess={logIn}
         onFailure={logIn}
