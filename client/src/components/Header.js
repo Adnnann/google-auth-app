@@ -9,6 +9,8 @@ import { Navigate, useNavigate } from 'react-router';
 
 
 const Header = ({logIn, logOut, login, logout}) =>{
+    
+    const KEY = process.env.REACT_APP_GOOGLE.KEY
     const [streamsArr, setStreamsArr] = useState([])
     const storedStreams = useSelector((state) => state.streams.streams)
     const dispatch = useDispatch()
